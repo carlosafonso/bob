@@ -17,18 +17,33 @@ class Runner
      */
     public function run($command, $input = null)
     {
-        $proc = proc_open($command, [0 => ['pipe', 'r'], 1 => ['pipe', 'w']], $pipes);
+        $descriptors = [
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+            2 => ['pipe', 'w']
+        ];
+        $proc = proc_open($command, $descriptors, $pipes);
 
         if ($input) {
             fwrite($pipes[0], $stdIn);
             fclose($pipes[0]);
         }
 
-        $out = fgets($pipes[1]);
+        $out = null;
+        while ($line = fgets($pipes[1])) {
+            $out .= $line;
+        }
         fclose($pipes[1]);
+
+        $err = null;
+        while ($line = fgets($pipes[2])) {
+            $err .= $line;
+        }
+        fclose($pipes[2]);
+
         $ret = proc_close($proc);
 
-        $output = new Output($ret, $out);
+        $output = new Output($ret, $out, $err);
         return $output;
     }
 }

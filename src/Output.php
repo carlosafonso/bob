@@ -21,9 +21,17 @@ class Output
      */
     public $output;
 
-    public function __construct($returnCode, $output = null)
+    /**
+     * The error output of the command.
+     *
+     * @var string
+     */
+    public $error;
+
+    public function __construct($returnCode, $output = null, $error = null)
     {
         $this->returnCode = $returnCode;
         $this->output = $output;
+        $this->error = $error;
     }
 }
