@@ -25,7 +25,7 @@ class Runner
         $proc = proc_open($command, $descriptors, $pipes);
 
         if ($input) {
-            fwrite($pipes[0], $stdIn);
+            fwrite($pipes[0], $input);
             fclose($pipes[0]);
         }
 
