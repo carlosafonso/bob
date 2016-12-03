@@ -1,0 +1,50 @@
+{
+    "name": "carlosafonso/prok",
+    "type": "library",
+    "description": "Process management library",
+    "keywords": [
+        "process",
+        "command"
+    ],
+    "homepage": "https://github.com/carlosafonso/prok",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos Afonso",
+            "email": "carlos.afonso.perez@gmail.com",
+            "homepage": "https://carlosafon.so",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "react/promise": "^2.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "symfony/var-dumper": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Afonso\\Prok\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Afonso\\Prok\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
